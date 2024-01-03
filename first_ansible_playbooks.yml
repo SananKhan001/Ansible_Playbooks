@@ -1,0 +1,16 @@
+---
+
+- name : Installing and starting nginx servers on target servers
+  hosts : all
+  become : true
+
+  tasks : 
+    - name : Installing nginx server by using apt module 
+      apt : 
+        name : nginx
+        state : present
+
+    - name : Starting nginx server by using service module
+      service : 
+        name : nginx
+        state : started
