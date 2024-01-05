@@ -1,9 +1,41 @@
 ---
-- name : creating a ping playbook for practice
+- name : creating a playbook for practice
+  vars :
+    my_var : "Hello World !!"
+    array_var :
+      - 'sanan'
+      - 'shivam'
+      - 'shubham'
+      - 'kathi'
+    array_var_another : ['sanan', 'shivam', 'shubham', 'kathi']
+    dict_var : 
+        'sanan' : 'Patna'
+        'shivam' : 'Banaras'
+        'Shubham' : 'Dehri'
+        'kathi' : 'Mojhappar pur'
+    traditional_dict : 
+        {
+          'sanan' : 'Patna',
+          'shivam' : 'Banaras'
+        }
   hosts : all
   become : true
 
   tasks : 
     - name : ping task
-      ping : 
+      ping :
+
+    - name : the second task of this playbook is to print the userdefined variable 
+      debug : 
+        msg : 
+          - "I am saying {{ my_var  }}"
+          - "Printing elements of array_var : {{array_var}}"
+          - "Printing elements of array_var_another : {{array_var_another}}"
+          - "But my fav element of array_vat is {{ array_var[0] }}"
+          - "There is {{ array_var[3] }} too"
+          - "Printing Dict_var : {{ dict_var  }}"
+          - "Address of shivam {{ dict_var['shivam'] }}"
+          - "Printing in traditional way {{traditional_dict}}"
+          - "Address of sanan {{traditional_dict['sanan']}}"
 ...
+

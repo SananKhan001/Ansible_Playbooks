@@ -1,0 +1,16 @@
+---
+- name: This playbook will edit a file it will take file_path,line_starts_with and txt var
+  hosts: all
+  become: true
+  vars:
+    file_path: /EMPTY/
+    line_starts_with: /EMPTY/
+    txt: /EMPTY/
+
+  tasks:
+    - name: Editing the file
+      lineinfile: 
+        path: "{{file_path}}"
+        regexp: "^{{line_starts_with}}"
+        line: "{{txt}}"
+...
