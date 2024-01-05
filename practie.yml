@@ -1,0 +1,9 @@
+---
+- name : creating a ping playbook for practice
+  hosts : all
+  become : true
+
+  tasks : 
+    - name : ping task
+      ping : 
+...
