@@ -1,0 +1,16 @@
+---
+- name: This playbook is to install and remove a package in target nodes
+  hosts: all
+  become: true
+
+  vars:
+    package_name: "/EMPTY/"
+    state: "/EMPTY/"
+
+  tasks: 
+    - name: Perform installation and uninstallation
+      apt: 
+        name: "{{package_name}}"
+        state: "{{state}}"
+...
+

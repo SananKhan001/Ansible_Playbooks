@@ -1,0 +1,12 @@
+---
+- name: Loops in Ansible
+  hosts: all
+
+  tasks:
+    - name: iterating in loop and printing all names
+      debug:
+        msg:
+        - 'sanan'
+        - 'ahmad'
+        - 'khan'
+...

@@ -1,0 +1,47 @@
+---
+- name: Playbook to configure Apache Server
+  hosts: all
+  become: true
+
+  vars: 
+      index_path: /home/ubuntu/index.html
+
+  tasks:
+    - name: Install Apache Server
+      apt:
+        name: apache2
+        state: present
+
+    - name: Start Apache Server
+      service: 
+        name: apache2.service
+        state: started
+    - name: Install firewalld
+      apt:
+        name: firewalld
+        state: present
+
+    - name: Add Firewall rules
+      firewalld:
+        port: 80/tcp
+        permanent: true
+        state: enabled
+
+    - name: Reload Firewall configuration for the new rule
+      systemd:
+        name: firewalld
+        state: reloaded
+
+    - name: Copy indexfile to Apache directory
+      copy:
+        src: "{{ index_path  }}"
+        dest: /var/www/html/index.html
+
+    - name: Starting webservice
+      shell: a2ensite 000-default.conf
+
+    - name: Reload apache2
+      service: 
+        name: apache2.service
+        state: restarted
+...

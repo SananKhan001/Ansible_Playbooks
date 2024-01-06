@@ -1,0 +1,19 @@
+---
+- name: 'Learning conditional operator'
+  hosts: "{{ hosts }}"
+
+  tasks:
+    - name: 'Trying out when'
+      debug:
+        msg: 'Condition is True'
+      when: ansible_host == '172.31.25.163'
+
+    - name: 'Trying with false condition'    
+      debug:
+        msg: 'Condition is False'
+      when: ansible_host == 'node'
+
+    - name: 'Trying with group name'
+      debug: 
+        msg: 'Group found'
+      when: "'My-Client-Group' in group_names"
